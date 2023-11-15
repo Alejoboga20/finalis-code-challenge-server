@@ -30,8 +30,30 @@ This project is a code challenge for Finalis. It is a server that provides a RES
 
 ## Installation
 
+In order to run this project, you need to have [Node.js](https://nodejs.org/en/), [pnpm](https://pnpm.io/) and docker installed.
+
+1. Create a `.env` file to host your environment variables for database connection. You can use the `.env.example` file as a template.
+
+```
+DB_PORT=
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+DB_HOST=
+
+PORT=
+```
+
+2. Install dependencies
+
 ```bash
 $ pnpm install
+```
+
+3. Create docker container for database
+
+```bash
+$ docker-compose up -d
 ```
 
 ## Running the app
