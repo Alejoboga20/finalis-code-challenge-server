@@ -5,10 +5,11 @@ import {
   Body,
   Param,
   ParseUUIDPipe,
+  Patch,
 } from '@nestjs/common';
 
 import { FormsService } from './forms.service';
-import { CreateFormDto } from './dto';
+import { CreateFormDto, UpdateFormDto } from './dto';
 
 @Controller('forms')
 export class FormsController {
@@ -27,5 +28,13 @@ export class FormsController {
   @Get(':id')
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.formsService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateFormDto: UpdateFormDto,
+  ) {
+    return this.formsService.update(id, updateFormDto);
   }
 }

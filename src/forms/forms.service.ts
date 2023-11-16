@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { CreateFormDto } from './dto';
+import { CreateFormDto, UpdateFormDto } from './dto';
 import { Form } from './entities/form.entity';
 import { ReceiptsService } from '../receipts/receipts.service';
 
@@ -29,6 +29,18 @@ export class FormsService {
     await this.formRepository.save(form);
 
     return form;
+  }
+
+  async update(id: string, updateFormDto: UpdateFormDto): Promise<Form> {
+    const form = await this.findOne(id);
+
+    const updatedForm = await this.formRepository.preload({
+      ...form,
+      ...updateFormDto,
+    });
+    await this.formRepository.save(updatedForm);
+
+    return updatedForm;
   }
 
   async findAll(): Promise<Form[]> {
