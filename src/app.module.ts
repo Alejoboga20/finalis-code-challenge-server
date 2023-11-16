@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { FormsModule } from './forms/forms.module';
+import { ReceiptsModule } from './receipts/receipts.module';
 
 @Module({
   imports: [
@@ -17,6 +19,7 @@ import { FormsModule } from './forms/forms.module';
       synchronize: true,
     }),
     FormsModule,
+    ReceiptsModule,
   ],
   controllers: [],
   providers: [],
