@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 
 import { FormsService } from './forms.service';
 import { CreateFormDto } from './dto';
@@ -18,7 +25,7 @@ export class FormsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.formsService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.formsService.findOne(id);
   }
 }
