@@ -15,7 +15,6 @@ export class CreateFormDto {
   companyName: string;
 
   @IsString()
-  @MinLength(3)
   fiscalCode: string;
 
   @IsNumber()
