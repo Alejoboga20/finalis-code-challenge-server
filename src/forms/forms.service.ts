@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateFormDto } from './dto/create-form.dto';
-import { UpdateFormDto } from './dto/update-form.dto';
+
+import { CreateFormDto } from './dto';
 
 @Injectable()
 export class FormsService {
@@ -15,14 +15,5 @@ export class FormsService {
 
   findOne(id: number) {
     return `This action returns a #${id} form`;
-  }
-
-  update(id: number, updateFormDto: UpdateFormDto) {
-    console.log({ updateFormDto });
-    return `This action updates a #${id} form`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} form`;
   }
 }

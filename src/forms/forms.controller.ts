@@ -1,15 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+
 import { FormsService } from './forms.service';
-import { CreateFormDto } from './dto/create-form.dto';
-import { UpdateFormDto } from './dto/update-form.dto';
+import { CreateFormDto } from './dto';
 
 @Controller('forms')
 export class FormsController {
@@ -28,15 +20,5 @@ export class FormsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.formsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFormDto: UpdateFormDto) {
-    return this.formsService.update(+id, updateFormDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.formsService.remove(+id);
   }
 }
