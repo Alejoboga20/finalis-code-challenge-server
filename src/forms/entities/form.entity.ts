@@ -13,9 +13,9 @@ export class Form {
   @Column({ name: 'fiscal_code', type: 'text' })
   fiscalCode: string;
 
-  @Column({ name: 'client_number', type: 'int' })
+  @Column({ name: 'client_number', type: 'numeric' })
   clientNumber: number;
 
-  @OneToMany(() => Receipt, (receipt) => receipt.form, { eager: true })
+  @OneToMany(() => Receipt, (receipt) => receipt.form)
   receipts: Receipt[];
 }

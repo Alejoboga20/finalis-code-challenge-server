@@ -10,10 +10,10 @@ export class Receipt {
   @Column({ name: 'receipt_date', type: 'date' })
   receiptDate: Date;
 
-  @Column({ name: 'tax_amount', type: 'float' })
+  @Column({ name: 'tax_amount', type: 'numeric' })
   taxAmount: number;
 
-  @Column({ name: 'tax_percentage', type: 'float' })
+  @Column({ name: 'tax_percentage', type: 'numeric' })
   taxPercentage: number;
 
   @ManyToOne(() => Form, (form) => form.receipts)
