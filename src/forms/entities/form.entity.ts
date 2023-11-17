@@ -14,6 +14,9 @@ export class Form {
   @Column({ name: 'fiscal_code', type: 'text' })
   fiscalCode: string;
 
+  @Column({ name: 'valid_fiscal_code', type: 'boolean' })
+  validFiscalCode: boolean;
+
   @Column({ name: 'client_number', type: 'numeric' })
   clientNumber: number;
 

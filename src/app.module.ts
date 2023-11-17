@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { FormsModule } from './forms/forms.module';
 import { ReceiptsModule } from './receipts/receipts.module';
+import { ValidatorModule } from './validator/validator.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ReceiptsModule } from './receipts/receipts.module';
     }),
     FormsModule,
     ReceiptsModule,
+    ValidatorModule,
   ],
   controllers: [],
   providers: [],

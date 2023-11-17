@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateFormDto, UpdateFormDto } from './dto';
 import { Form } from './entities/form.entity';
 import { ReceiptsService } from '../receipts/receipts.service';
+import { ValidatorService } from '../validator/validator.service';
 
 @Injectable()
 export class FormsService {
@@ -12,13 +13,20 @@ export class FormsService {
     @InjectRepository(Form)
     private readonly formRepository: Repository<Form>,
     private readonly receiptsService: ReceiptsService,
+    private readonly validatorService: ValidatorService,
   ) {}
 
   async create(createFormDto: CreateFormDto): Promise<Form> {
-    const { receipts, ...rest } = createFormDto;
+    const { receipts, fiscalCode, ...rest } = createFormDto;
+
+    const isValidFiscalCode = await this.validatorService.validateFiscalId(
+      fiscalCode,
+    );
 
     const form = this.formRepository.create({
       ...rest,
+      fiscalCode,
+      validFiscalCode: isValidFiscalCode,
       receipts: await Promise.all(
         receipts.map(
           async (receipt) => await this.receiptsService.create(receipt),
